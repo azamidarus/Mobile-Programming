@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Portfolio | Muhammad Azami Amaluddin</title>
+    <style>
+        :root {
+            /* SDG 12: Responsible Consumption and Production theme (Mustard/Golden Yellow & Earthy tones) */
+            --primary-color: #BF8B2E;
+            --primary-dark: #9c7125;
+            --primary-light: #f4ece1;
+            --text-main: #333333;
+            --text-muted: #555555;
+            --bg-body: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-main);
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section, header {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Header / Home */
+        #home {
+            text-align: center;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+        }
+
+        #home h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+        }
+
+        .sdg-card {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(191, 139, 46, 0.3);
+            text-align: left;
+        }
+
+        .sdg-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Grid Layout for Cards */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Text Blocks (Reflection, Resources) */
+        .text-block {
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #ddd;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #home h1 {
+                font-size: 2rem;
+            }
+            .text-block {
+                padding: 1.5rem;
+            }
+            section, header {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="nav-brand">M. Azami's Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#labs">Labs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <h1>MUHAMMAD AZAMI AMALUDDIN BIN MOHD DARUS</h1>
+        <div class="subtitle">
+            <strong>Programme:</strong> INFORMATION TECHNOLOGY<br>
+            <strong>Matric No:</strong> A211409<br>
+            <strong>Instructor:</strong> DR. NAZATUL AINI BINTI ABD MAJID
+        </div>
+        
+        <div class="intro-text">
+            <p>Hello, welcome to my e-Portfolio! I am an Information Technology student passionate about creating impactful mobile applications. This portfolio showcases my progression in the Mobile Programming course, highlighting my journey from learning basic Jetpack Compose UI to integrating advanced sensors and cloud databases.</p>
+        </div>
+
+        <div class="sdg-card">
+            <h3>&#127757; SDG 12: Responsible Consumption and Production</h3>
+            <p>My application aims to reduce household food waste by managing grocery lists efficiently and enabling surplus food donations to the community.</p>
+        </div>
+    </header>
+
+    <section id="labs">
+        <h2 class="section-title">Laboratory Work</h2>
+        <div class="grid-container">
+            
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/O7Kp5DYJPr8" title="Lab 1 (UI)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 1: UI</h3>
+                    <div class="card-description">
+                        <p><strong>Reflection:</strong> In this lab, I learned the fundamentals of Jetpack Compose by building basic user interfaces. I experimented with layouts like Column, Row, and Box, and utilized basic composables to structure an app screen effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5_3OGpJ5JbQ" title="Lab 2 (Interaction)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 2: Interaction</h3>
+                    <div class="card-description">
+                        <p><strong>Reflection:</strong> This lab introduced me to state management in Compose using <code>remember</code> and <code>mutableStateOf</code>. I learned how to make the UI interactive by handling button clicks and updating the screen dynamically based on user input.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/UpIWrgeIX-M" title="Lab 3 (Material Design)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 3: Material Design</h3>
+                    <div class="card-description">
+                        <p><strong>Reflection:</strong> Here, I explored Material Design 3 guidelines to enhance the visual appeal of my application. I implemented components like Scaffold and TopAppBar, applying consistent color themes to ensure a modern user experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/uyxnPHbIptM" title="Lab 4 (Navigation)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 4: Navigation</h3>
+                    <div class="card-description">
+                        <p><strong>Reflection:</strong> Mastering navigation was the core focus of this lab. I utilized Jetpack Navigation Compose to build a seamless multi-screen experience, passing data and allowing users to transition smoothly between different screens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/P6ZxrN8iFrc" title="Lab 5 (Room)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 5: Room Database</h3>
+                    <div class="card-description">
+                        <p><strong>Reflection:</strong> This lab was crucial for understanding data persistence. I successfully integrated Room Database to store application data locally, ensuring that user inputs like grocery items are saved permanently even when the app is closed.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="grid-container">
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/o1vP-mfLsCk" title="Project 1 Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Project 1: NgamNgam (Local Features)</h3>
+                    <div class="card-description">
+                        <p><strong>Problem Statement:</strong> Many households struggle with food waste due to over-purchasing and poor grocery planning. NgamNgam was created to help users calculate precise ingredient portions and manage their shopping lists effectively.</p>
+                        <p><strong>Lessons Learned:</strong> I learned how to manage complex UI states and implement a multi-screen navigation flow using Jetpack Navigation Compose. Sharing a common ViewModel across different screens was a significant milestone in ensuring data consistency throughout the app.</p>
+                    </div>
+                    <a href="https://github.com/azamidarus/Mobile-Programming/tree/main/A211409_DrNazatulAini_Project1" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/eChCcnuAmqM" title="Project 2 Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Project 2: NgamNgam (Cloud & Sensors)</h3>
+                    <div class="card-description">
+                        <p><strong>Problem Statement:</strong> Building upon the local grocery list, there was a need to easily add physical items via scanning and share surplus food with the community. Integrating barcode scanning and a cloud-based donation system directly addresses this gap to further promote responsible consumption.</p>
+                        <p><strong>Lessons Learned:</strong> This project taught me how to bridge local and cloud data by seamlessly combining Room Database with Firebase Firestore. I also gained practical experience integrating hardware sensors through Google ML Kit for real-time barcode scanning.</p>
+                    </div>
+                    <a href="https://github.com/azamidarus/Mobile-Programming/tree/main/A211409_DrNazatulAini_Project2" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reflection">
+        <h2 class="section-title">Reflection & Learning Journey</h2>
+        <div class="text-block">
+            <p>My journey from Lab 1 to Project 2 has been incredibly rewarding, transforming my basic understanding of UI components into the ability to build a fully functional, hardware-aware application. I overcame major challenges with state management, sensor integration, and asynchronous cloud operations.</p>
+            <p>Ultimately, this course has shown me how mobile technology can drive sustainable practices like reducing food waste, equipping me with industry-relevant skills that I am eager to apply in future software development.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills & Tech Stack</h2>
+        <div class="skills-container">
+            <span class="skill-badge">Kotlin</span>
+            <span class="skill-badge">Jetpack Compose</span>
+            <span class="skill-badge">Jetpack Navigation</span>
+            <span class="skill-badge">Room Database</span>
+            <span class="skill-badge">Firebase Firestore</span>
+            <span class="skill-badge">Google ML Kit (Barcode Scanning)</span>
+            <span class="skill-badge">CameraX</span>
+            <span class="skill-badge">MVVM Architecture</span>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2 class="section-title">Resources & Acknowledgements</h2>
+        <div class="text-block">
+            <p>Throughout the development of my projects and this e-Portfolio, the following resources were instrumental:</p>
+            <ul>
+                <li>Google ML Kit Vision API</li>
+                <li>Firebase Cloud Firestore</li>
+                <li>Room Persistence Library</li>
+            </ul>
+            <p>I also acknowledge the use of AI tools like Gemini and ChatGPT for assisting with debugging, code optimization, and generating the structural HTML layout for this e-Portfolio.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Muhammad Azami Amaluddin Bin Mohd Darus</strong> | Matric: A211409</p>
+        <p>&copy; 2026. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
