@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669909003626",
+    "project_id": "a211409-drnazatulaini-project2",
+    "storage_bucket": "a211409-drnazatulaini-project2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669909003626:android:898b4e1a7b3a73b2704913",
+        "android_client_info": {
+          "package_name": "com.example.a211409_drnazatulaini_project2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnKEr4nBoNGuqbIaYG73frXRLYRz4lJsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
