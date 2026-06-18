@@ -50,6 +50,23 @@ class NgamNgamViewModel(private val repository: GroceryRepository) : ViewModel()
         }
     }
 
+    fun scanAndAddProduct(barcode: String) {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitInstance.api.getProductByBarcode(barcode)
+                val productName = response.product?.product_name
+
+                if (!productName.isNullOrEmpty()) {
+                    addIngredient(productName, 1f, "unit", isExtra = false)
+                } else {
+                    addIngredient("Unknown: $barcode", 1f, "unit", isExtra = false)
+                }
+            } catch (e: Exception) {
+                addIngredient("Scanned: $barcode", 1f, "unit", isExtra = false)
+            }
+        }
+    }
+
     fun toggleItemBought(item: GroceryItem) {
         viewModelScope.launch {
             repository.updateItem(item.copy(isBought = !item.isBought))
