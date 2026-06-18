@@ -31,7 +31,7 @@ import java.util.concurrent.Executors
 @Composable
 fun ScannerScreen(viewModel: NgamNgamViewModel, onBack: () -> Unit) {
     val context = LocalContext.current
-    val lifecycleOwner = LocalLifecycleOwner.current // Fix deprecated warning
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     var hasCameraPermission by remember {
         mutableStateOf(
@@ -81,15 +81,13 @@ fun ScannerScreen(viewModel: NgamNgamViewModel, onBack: () -> Unit) {
                                             for (barcode in barcodes) {
                                                 val rawValue = barcode.rawValue
                                                 if (rawValue != null) {
-                                                    // Insert scanned item to Room DB
-                                                    viewModel.addIngredient("Scanned: $rawValue", 1f, "unit", false)
-                                                    onBack() // Autoclose after successful scan
+                                                    viewModel.scanAndAddProduct(rawValue)
+                                                    onBack()
                                                     break
                                                 }
                                             }
                                         }
                                         .addOnFailureListener { _ ->
-                                            // Leave empty
                                         }
                                         .addOnCompleteListener {
                                             imageProxy.close()
@@ -98,7 +96,6 @@ fun ScannerScreen(viewModel: NgamNgamViewModel, onBack: () -> Unit) {
                                     imageProxy.close()
                                 }
                             } catch (_: Exception) {
-                                // Fix unused exception warning
                                 imageProxy.close()
                             }
                         }
@@ -114,7 +111,6 @@ fun ScannerScreen(viewModel: NgamNgamViewModel, onBack: () -> Unit) {
                                 imageAnalysis
                             )
                         } catch (_: Exception) {
-                            // Fix unused exception warning
                         }
                     }, ContextCompat.getMainExecutor(ctx))
 
