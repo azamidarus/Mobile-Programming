@@ -19,7 +19,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.a211409_drnazatulaini_project2.ui.theme.A211409_DrNazatulAini_Project2Theme
 
-// TAMBAH: Community dalam senarai Route
 enum class Route { Home, Scaler, Extra, List, Profile, Scanner, Community }
 
 class MainActivity : ComponentActivity() {
@@ -89,7 +88,6 @@ fun NgamNgamApp(viewModel: NgamNgamViewModel = viewModel(factory = NgamNgamViewM
             composable(Route.List.name) {
                 ShoppingListScreen(uiState = uiState, viewModel = viewModel)
             }
-            // TAMBAH: Skrin Community diletakkan dalam Navigasi
             composable(Route.Community.name) {
                 CommunityScreen(viewModel = viewModel)
             }
